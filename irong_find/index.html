@@ -4,17 +4,24 @@
 </style> 
 <body>
 
-<p id="demo">irong官方查询网站</p>
+<h1>irong官方查询网站</h1>
+<h2>The query result of is：</h2>
+<p id="demo">请使用正宗浏览器查询</p>
+<h6>©2022 zhs141.github.io</h6>
 
 <Script Language="JavaScript">
 var name=prompt('irong鉴定-请输入您的姓名：')
 if (name === '张三'||name === '周航山'||name === '周秉宏'||name === '马伊禧'||name === '赵龙麒') {
-   document.getElementById("demo").innerHTML = "真";
+   document.getElementById("demo").innerHTML = name+"：真irong!!!";
+}
+
+else if (name ==='黄先荣') {
+   document.getElementById("demo").innerHTML = '先荣竟在我身边！！！'
 }
 
 else
 {
-   document.getElementById("demo").innerHTML = "假";
+   document.getElementById("demo").innerHTML = "ERROR None：未登记 *"+name+'*';
 }
 
 </script>
