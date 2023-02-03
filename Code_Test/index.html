@@ -41,9 +41,11 @@ let mailOptions = {
 
 var code=prompt('请输入验证码')
 if (code === num) {
-   document.getElementById("demo").innerHTML = "验证通过！";
+    document.getElementById("demo").innerHTML = "验证通过或程序出现了问题";
 }
-
+else{
+    alert('验证码错误或程序出现问题！')
+}
 
 </Script>
 </body>
