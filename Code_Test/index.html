@@ -4,7 +4,7 @@
     p{color: white}
 </style>
 <body style="background-color:black;">
-<font color="white"><h1>邮箱发送+验证码效验测试</h1></font>
+<font color="white"><h1>尝试发送验证码</h1></font>
 <Script Language="JavaScript">
 var name=prompt('请输入邮件接收者邮箱：')
 var num=Math.floor(Math.random()*100+8);
@@ -31,9 +31,9 @@ let mailOptions = {
 //发送
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
-        return console.log(error)
+        document.getElementById("demo").innerHTML = "ERROR";
       }
-      console.log('Message sent: %s', info.messageId)
+      document.getElementById("demo").innerHTML = "Message sent: %s";
     })
 
 var code=prompt('请输入验证码')
