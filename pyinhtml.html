@@ -3,10 +3,22 @@
     <title>html内嵌py试验室</title>
     <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
     <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    <py-env> 
+      - qrcode
+      - PIL
+    </py-env>
   </head>
   <body>
     <py-script>
-      print('Hallo world!')
+      import qrcode as q
+      from PIL import Image
+      ccc = input('输入想要在二维码中保存的内容：')
+      img = q.make(ccc)
+      print(img)
+      img.save('123.png')
+      im = Image.open('123.png')
+      im.show()
     </py-script>
+  <img scr='123.png'>
   </body>
 </html>
