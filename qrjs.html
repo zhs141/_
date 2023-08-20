@@ -3,15 +3,24 @@
 	<head>
 		<meta charset="utf-8">
 		<title>制作二维码</title>
+		<script src="https://cdn.bootcdn.net/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 	</head>
 	<body bgcolor="#99CCFF">
+		<h1>
 		<input id="re" type="text" />
                 <button onclick="getUsername()">获取</button>
+		</h1>
                 <script>
                      function getUsername() {
                          var res=document.getElementById("re").value;
                      }
+		     var qrcode = new QRCode(document.getElementById("qrcode"), {
+                         width: 600,
+                         height: 600
+                     });
+                     qrcode.makeCode(res);
+		     <div id="qrcode"></div>
                 </script>
-		<img src="https://api.qrserver.com/v1/create-qr-code/?data="+res+"&amp;size=500x500" alt="" title="" />
+		<div id="qrcode"></div>
 	</body>
 </html>
