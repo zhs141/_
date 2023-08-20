@@ -5,6 +5,13 @@
 		<title>二维码测试</title>
 	</head>
 	<body bgcolor="#99CCFF">
-		<img src="https://api.qrserver.com/v1/create-qr-code/?data=zhs141.github.io&amp;size=500x500" alt="" title="" />
+		<input id="re" type="text" />
+                <button onclick="getUsername()">获取用户名</button>
+                <script>
+                     function getUsername() {
+                         var res=document.getElementById("re").value;
+                     }
+                </script>
+		<img src="https://api.qrserver.com/v1/create-qr-code/?data="+res+"&amp;size=500x500" alt="" title="" />
 	</body>
 </html>
