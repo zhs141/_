@@ -1,1 +1,53 @@
 
+<!DOCTYPE html> 
+ <html lang="en"> 
+ <head> 
+ <meta charset="UTF-8"> 
+ <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+ <title>真神佳馨</title> 
+ <style> 
+   body, html { 
+     height: 100%; 
+     margin: 0; 
+     display: flex; 
+     justify-content: center; 
+     align-items: center; 
+   } 
+  
+   .rotating-image { 
+     width: 200px; /* 可以根据需要调整图片大小 */ 
+     height: auto; 
+     animation: rotateImage 0.05s linear infinite; 
+   } 
+  
+   @keyframes rotateImage { 
+     from { 
+       transform: rotate(0deg); 
+     } 
+     to { 
+       transform: rotate(360deg); 
+     } 
+   } 
+ </style> 
+ </head> 
+ <body> 
+ <img src="https://s2.loli.net/2024/02/04/GjmeFD8Ha6NUiBJ.png" alt="真神佳馨" class="rotating-image"> 
+ <br> 
+ <label for="speed-control">？</label> 
+ <input type="range" id="speed-control" name="speed" min="0.05" max="10" value="0.05" step="0.05"> 
+  
+ <script> 
+   document.addEventListener('DOMContentLoaded', function() { 
+     var image = document.querySelector('.rotating-image'); 
+     var speedControl = document.getElementById('speed-control'); 
+  
+     function updateAnimationSpeed() { 
+       var speed = speedControl.value; 
+       image.style.animationDuration = speed + 's'; 
+  
+     speedControl.addEventListener('input', updateAnimationSpeed); 
+     updateAnimationSpeed(); // Initialize with default value 
+   }); 
+ </script> 
+ </body> 
+ </html>
