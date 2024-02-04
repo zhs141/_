@@ -31,7 +31,7 @@
 </head>
 <body>
 <img src="https://s2.loli.net/2024/02/04/84k3f2WBcxeUpd1.png" alt="旋转的旦旦" class="rotating-image">
-<label for="speed-control">速度：1度/秒</label>
+<label for="speed-control">速度调节</label>
 <input type="range" id="speed-control" name="speed" min="1" max="720" value="1">
 
 <script>
@@ -42,8 +42,6 @@
     function updateAnimationSpeed() {
       var speed = speedControl.value;
       image.style.animationDuration = speed + 's';
-      document.querySelector('label').textContent = '速度: ' + speed + '度/秒';
-    }
 
     speedControl.addEventListener('input', updateAnimationSpeed);
     updateAnimationSpeed(); // Initialize with default value
