@@ -1,0 +1,53 @@
+1<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rotating Image with Speed Control</title>
+<style>
+  body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .rotating-image {
+    width: 200px; /* 可以根据需要调整图片大小 */
+    height: auto;
+    animation: rotateImage 5s linear infinite;
+  }
+
+  @keyframes rotateImage {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>
+</head>
+<body>
+<img src="抹茶.jpg" alt="旋转的抹茶" class="rotating-image">
+<label for="speed-control">Speed: 1deg/s</label>
+<input type="range" id="speed-control" name="speed" min="1" max="720" value="1">
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var image = document.querySelector('.rotating-image');
+    var speedControl = document.getElementById('speed-control');
+
+    function updateAnimationSpeed() {
+      var speed = speedControl.value;
+      image.style.animationDuration = speed + 's';
+      document.querySelector('label').textContent = 'Speed: ' + speed + 'deg/s';
+    }
+
+    speedControl.addEventListener('input', updateAnimationSpeed);
+    updateAnimationSpeed(); // Initialize with default value
+  });
+</script>
+</body>
+</html>
