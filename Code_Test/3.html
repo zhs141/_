@@ -1,65 +1,60 @@
-<!DOCTYPE html>  
-  <html lang="en">  
-  <head>  
-  <meta charset="UTF-8">  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-  <title>抹茶旦旦</title>  
-  <style>  
-    body, html {  
-      height: 100%;  
-      margin: 0;  
-      overflow: hidden; /* 防止滚动条出现 */  
-      display: flex;  
-      justify-content: center;  
-      align-items: center;  
-    }  
-  
-    .container {  
-      width: 100vw;  
-      height: 100vh;  
-      position: relative;  
-      display: flex;  
-      justify-content: center;  
-      align-items: center;  
-    }  
-  
-    .rotating-image {  
-      width: 100px; /* 根据需要调整图片大小 */  
-      height: auto;  
-      position: absolute; /* 使用绝对定位，使图片能够绕中心旋转 */  
-      animation: rotateAroundCenter 10s linear infinite; /* 初始旋转动画时间设置为10秒，可以通过滑动条调整 */  
-    }  
-  
-    @keyframes rotateAroundCenter {  
-      from {  
-        transform: rotate(0deg) translateX(150px) rotate(0deg);  
-      }  
-      to {  
-        transform: rotate(360deg) translateX(150px) rotate(-360deg);  
-      }  
-    }  
-  </style>  
-  </head>  
-  <body>  
-  <div class="container">  
-    <img src="https://s2.loli.net/2024/02/04/84k3f2WBcxeUpd1.png" alt="旋转的旦旦" class="rotating-image"> 
-  </div>  
-  <label for="speed-control">旋转速度控制：</label>  
-  <input type="range" id="speed-control" name="speed" min="1" max="20" value="10" step="1">  
-  
-  <script>  
-  document.addEventListener('DOMContentLoaded', function() {  
-    var image = document.querySelector('.rotating-image');  
-    var speedControl = document.getElementById('speed-control');  
-  
-    function updateAnimationSpeed() {  
-      var speed = speedControl.value;  
-      image.style.animationDuration = (20 - speed) + 's'; // 速度控制逻辑调整，更大的值意味着更快的旋转  
-    }  
-  
-    speedControl.addEventListener('input', updateAnimationSpeed); // 监听滑动条的变化  
-    updateAnimationSpeed(); // 使用滑动条的初始值初始化动画速度  
-  });  
-  </script>  
-  </body>  
-  </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>抹茶旦旦</title>
+<style>
+  body, html {
+    height: 100%;
+    margin: 0;
+    overflow: hidden; /* 防止滚动条出现 */
+  }
+
+  .container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+  }
+
+  .bouncing-image {
+    width: 100px; /* 根据需要调整图片大小 */
+    height: auto;
+    position: absolute; /* 使用绝对定位 */
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <img src="https://s2.loli.net/2024/02/04/84k3f2WBcxeUpd1.png" alt="弹射的旦旦" class="bouncing-image">
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var image = document.querySelector('.bouncing-image');
+  var container = document.querySelector('.container');
+
+  var dx = Math.random() * 4 - 2; // 初始水平速度，随机值
+  var dy = Math.random() * 4 - 2; // 初始垂直速度，随机值
+
+  function moveImage() {
+    var rect = image.getBoundingClientRect();
+
+    if (rect.top <= 0 || rect.bottom >= window.innerHeight) {
+      dy = -dy; // 垂直方向碰到边缘时反弹
+    }
+    if (rect.left <= 0 || rect.right >= window.innerWidth) {
+      dx = -dx; // 水平方向碰到边缘时反弹
+    }
+
+    image.style.left = image.offsetLeft + dx + 'px';
+    image.style.top = image.offsetTop + dy + 'px';
+
+    requestAnimationFrame(moveImage); // 使用requestAnimationFrame递归调用自己，形成动画效果
+  }
+
+  moveImage(); // 启动动画
+});
+</script>
+</body>
+</html>
