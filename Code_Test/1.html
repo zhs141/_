@@ -1,1 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>真神佳馨</title>
+<style>
+  body, html {
+    height: 100%;
+    margin: 0;
+    overflow: hidden; /* 防止滚动条出现 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
+  .container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .rotating-image {
+    width: 100px; /* 根据需要调整图片大小 */
+    height: auto;
+    position: absolute; /* 使用绝对定位，使图片能够绕中心旋转 */
+    animation: rotateAroundCenter 10s linear infinite; /* 初始旋转动画时间设置为10秒，可以通过滑动条调整 */
+  }
+
+  @keyframes rotateAroundCenter {
+    from {
+      transform: rotate(0deg) translateX(300px) rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg) translateX(300px) rotate(-360deg);
+    }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <img src="https://s2.loli.net/2024/02/04/GjmeFD8Ha6NUiBJ.png" alt="真神佳馨" class="rotating-image">
+</div>
+<label for="speed-control">旋转速度控制：</label>
+<input type="range" id="speed-control" name="speed" min="1" max="20" value="10" step="1">
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var image = document.querySelector('.rotating-image');
+  var speedControl = document.getElementById('speed-control');
+
+  function updateAnimationSpeed() {
+    var speed = speedControl.value;
+    image.style.animationDuration = (20 - speed) + 's'; // 速度控制逻辑调整，更大的值意味着更快的旋转
+  }
+
+  speedControl.addEventListener('input', updateAnimationSpeed); // 监听滑动条的变化
+  updateAnimationSpeed(); // 使用滑动条的初始值初始化动画速度
+});
+</script>
+</body>
+</html>
