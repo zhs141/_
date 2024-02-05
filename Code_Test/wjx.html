@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rotating Image with Speed Control</title>
+<title>真神佳馨</title>
 <style>
   body, html {
     height: 100%;
@@ -11,6 +11,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column; /* 添加flex-direction以使内容垂直排列 */
   }
 
   .rotating-image {
@@ -32,21 +33,23 @@
 <body>
 <img src="https://s2.loli.net/2024/02/04/84k3f2WBcxeUpd1.png" alt="旋转的旦旦" class="rotating-image">
 <br>
-<label for="speed-control">？</label>
+<label for="speed-control">旋转速度控制：</label> <!-- 修改标签内容以更清晰地说明其功能 -->
 <input type="range" id="speed-control" name="speed" min="0.05" max="10" value="0.05" step="0.05">
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var image = document.querySelector('.rotating-image');
-    var speedControl = document.getElementById('speed-control');
+document.addEventListener('DOMContentLoaded', function() {
+  var image = document.querySelector('.rotating-image');
+  var speedControl = document.getElementById('speed-control');
 
-    function updateAnimationSpeed() {
-      var speed = speedControl.value;
-      image.style.animationDuration = speed + 's';
+  function updateAnimationSpeed() {
+    // 计算动画持续时间的倒数，以实现速度控制（更大的值表示更快的旋转）
+    var speed = 1 / speedControl.value;
+    image.style.animationDuration = speed + 's';
+  }
 
-    speedControl.addEventListener('input', updateAnimationSpeed);
-    updateAnimationSpeed(); // Initialize with default value
-  });
+  speedControl.addEventListener('input', updateAnimationSpeed); // 监听滑动条的变化
+  updateAnimationSpeed(); // 使用滑动条的初始值初始化动画速度
+});
 </script>
 </body>
 </html>
